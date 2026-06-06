@@ -1,14 +1,30 @@
 
 
-POST          http://127.0.0.1:8000/api/reset/password
+POST   http://127.0.0.1:8000/api/create/sale
 Content-Type: application/json
 Accept: application/json
 Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL3VzZXIvbG9naW4iLCJpYXQiOjE3ODA1ODgxNzgsImV4cCI6Mjk4NTU3MzY5OCwibmJmIjoxNzgwNTg4MTc4LCJqdGkiOiJTVk5WeVpZc0JlRWhYUHR0Iiwic3ViIjoiMSIsInBydiI6IjIzYmQ1Yzg5NDlmNjAwYWRiMzllNzAxYzQwMDg3MmRiN2E1OTc2ZjciLCIwIjoiYWRtaW4ifQ.vkeDaEzdUWDJkpbhf98119BAhWCCKfVRdVmKFzgbxuc
 
 {
+    "customer_id" : 1,
+    "payment_method" : "cash",
+    "items" : [
+                {"product_id" : 1,
+                "quantity" : 2},
 
-   "email" : "lugikorevocatus@gmail.com",
-   "password" : "Mama14"
+               { "product_id" : 2,
+                "quantity" : 2},
+
+                {"product_id" : 1,
+               
+                "quantity" : 2},
+             
+                {"product_id" : 4,
+              
+                "quantity" : 2}
+             ]
+
+    
   
    
    

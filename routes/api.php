@@ -7,6 +7,9 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\SupplierController;
+use App\Http\Controllers\PurchaseController;
+use App\Http\Controllers\SaleController;
 
 Route::get('/user', function (Request $request) {
     return $request->user();
@@ -38,6 +41,19 @@ Route::middleware(['auth:api', 'role:admin'])->group(function (){
     Route::put('update/customer/{id}', [CustomerController::class, 'update']);
     Route::delete('delete/customer/{id}', [CustomerController::class, 'destroy']);
     Route::get('customers/list', [CustomerController::class, 'index']);
+
+    //SUPPLIER MANAGEMENT 
+    Route::post('create/supplier', [SupplierController::class, 'store']);
+    Route::put('update/supplier/{id}', [SupplierController::class, 'update']);
+    Route::delete('delete/supplier/{id}', [SupplierController::class, 'destroy']);
+    Route::get('suppliers/list', [SupplierController::class, 'index']);
+
+    //PURCHASES FROM SUPPLIER
+    Route::post('create/purchase', [PurchaseController::class, 'store']);
+
+
+    //SALES MANAGEMENT
+    Route::post('create/sale', [SaleController::class, 'store']);
 
 });
 

@@ -39,4 +39,10 @@ class User extends Authenticatable implements JWTSubject
             $this->role
         ];
     }
+    public function purchase(){
+        return $this->hasMany(Purchase::class, 'created_by');
+    }
+    public function sale(){
+        return $this->hasMany(Sale::class, 'created_by');
+    }
 }

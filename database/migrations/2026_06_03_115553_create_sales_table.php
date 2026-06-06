@@ -13,6 +13,12 @@ return new class extends Migration
     {
         Schema::create('sales', function (Blueprint $table) {
             $table->id();
+            $table->string('sale_no')->unique();
+            $table->foreignId('customer_id')->nullable()->constrained('customers')->nullOnDelete();
+            $table->decimal('total_amount', 12, 2);
+            $table->enum('payment_method', ['card', 'cash', 'mobile'])->default('cash');
+            $table->enum('payment_status', ['refunded', 'cancelled', 'completed', 'pending'])->default('pending');
+            $table->foreignId('created_by')->constrained('users')->cascadeOnDelete();
             $table->timestamps();
         });
     }

@@ -13,6 +13,13 @@ return new class extends Migration
     {
         Schema::create('purchases', function (Blueprint $table) {
             $table->id();
+            $table->string('purchase_no')->unique();
+            $table->foreignId('supplier_id')->constrained('suppliers')->cascadeOnDelete();
+            $table->foreignId('created_by')->constrained('users')->cascadeOnDelete();
+            $table->dateTime('purchase_date');
+            $table->decimal('total_amount', 12, 2);
+            $table->enum('status', ['pending', 'cancelled', 'received'])->default('pending');
+
             $table->timestamps();
         });
     }
