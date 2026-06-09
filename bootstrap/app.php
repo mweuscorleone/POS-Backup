@@ -16,7 +16,8 @@ return Application::configure(basePath: dirname(__DIR__))
     //middleware registration
     ->withMiddleware(function (Middleware $middleware): void {
         $middleware->alias([
-            'role'  => \App\Http\Middleware\RoleMiddleware::class
+            'role'  => \App\Http\Middleware\RoleMiddleware::class,
+            'api.key' => \App\Http\Middleware\ApiKeyMiddeware::class
         ]);
     })
     // Custom message for unauthicated user

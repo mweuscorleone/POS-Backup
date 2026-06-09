@@ -151,8 +151,8 @@ class ProductController extends Controller
                         'Product balance'    => $product->stock_quantity,
                         'Product status'    => $product->status,
                         'Product created at'  => Carbon::parse($product->created_at)->format('Y-m-d H:i:s'),
-                        'Created By'     => $user->name,
-                        'Creator Role'   => $user->role
+                        // 'Created By'     => $user->name,
+                        // 'Creator Role'   => $user->role
                     ];
         });
 

@@ -9,7 +9,8 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\PurchaseController;
-use App\Http\Controllers\SaleController;
+use App\Http\Controllers\SaleController;  
+use App\Http\Controllers\ApiKeyController;
 
 Route::get('/user', function (Request $request) {
     return $request->user();
@@ -31,10 +32,10 @@ Route::middleware(['auth:api', 'role:admin'])->group(function (){
     Route::get('categories/list', [CategoryController::class, 'index']);
 
     //PRODUCT MANAGEMENT 
-    Route::post('create/product', [ProductController::class, 'store']);
+    // Route::post('create/product', [ProductController::class, 'store']);
     Route::put('update/product/{id}', [ProductController::class, 'update']);
     Route::delete('delete/product/{id}', [ProductController::class, 'destroy']);
-    Route::get('products/list', [ProductController::class, 'index']);
+    
 
     //CUSTOMER MANAGEMENT
     Route::post('create/customer', [CustomerController::class, 'store']);
@@ -56,10 +57,16 @@ Route::middleware(['auth:api', 'role:admin'])->group(function (){
     Route::post('create/sale', [SaleController::class, 'store']);
 
 });
-
+//ROUTE TO GENERATE API KEY FOR THIRD PART APPLICATION
+Route::post('create/key', [ApiKeyController::class, 'store']);
 //THE ROUTES CAN BE ACCESSED BY ALL USERS
 Route::middleware('auth:api')->group(function (){
     Route::post('user/logout', [AuthController::class, 'logout']);
+});
+
+Route::middleware(['api.key'])->group(function(){
+    Route::post('create/product', [ProductController::class, 'store']);
+    Route::get('products/list', [ProductController::class, 'index']);
 });
 Route::post('user/login', [AuthController::class, 'login']);
 Route::post('get/reset-password/token', [AuthController::class, 'store']);
